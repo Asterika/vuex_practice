@@ -1,0 +1,53 @@
+Managing State:
+difficult with many components
+Vuex = state management pattern + library
+
+state = the data our components rely on and render
+i.e. blog posts,to-do items, etc.
+as your app grows, each vue component has its own version of State
+but if one component changes its State
+and a distant relative is using that state,
+we need to communicate that changes
+default: events up, props down to share data, can becoem complex
+
+solve: consolidate state in one place that contains current state of our entire application
+every Vue component has direct access to this global state
+reactive, once one component using that state updates, all other instances update
+but...what happens when many dif components alter the state in many ways from many locations?
+need standardization:
+Vuex provides state mgmt pattern - store
+
+just like we create a new Vue instance:
+const app = new Vue({
+  data: {
+
+  },
+  //methods can update data
+  methods: {
+
+  },
+  //computed properties can access our data
+  computed: {
+
+  }
+})
+we can create a new Vuex store:
+const store = new Vuex.Store({
+  state: {
+
+  },
+  ***
+  //actions can update the Vuex state
+  actions: {
+
+  },
+  //getters can access our state
+  getters: {
+
+  }
+})
+*** here, store also has mutations, used to commit + track state changes
+*** best practice:
+actions call mutations
+mutations update state directly
+*** using Vue devtools allows us to debug by reversing state to previous value
